@@ -72,7 +72,7 @@ Open a new terminal window or tab and run:
 cd frontend
 npm run dev
 ```
-Open `http://localhost:3000` in your web browser.
+Open `http://localhost:5000` in your web browser.
 
 ---
 
@@ -82,8 +82,8 @@ You can log in to the portals immediately using the pre-seeded users:
 
 | Portal | Email | Password |
 | :--- | :--- | :--- |
-| **Devotee Portal** | `user@temple.com` | `user123` |
-| **Admin Portal** | `admin@temple.com` | `admin123` |
+| **Devotee Portal** | `user@gmail.com` | `user12` |
+| **Admin Portal** | `admin@gmail.com` | `admin12` |
 
 ---
 
