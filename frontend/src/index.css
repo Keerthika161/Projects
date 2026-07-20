@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0f0a05;
+    color: #f5f0e8;
+    transition: background-color 0.3s;
+  }
+
+  /* Custom scrollbar - themed gold */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: rgba(10,5,2,0.5); }
+  ::-webkit-scrollbar-thumb { background: rgba(243,126,34,0.5); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,0.8); }
+
+  /* Inputs: visible text */
+  input, textarea, select { color: #f5f0e8 !important; }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.4) !important; }
+}
+
+/* ====================================================
+   ANIMATIONS
+   ==================================================== */
+
+@keyframes floatTemple {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  33%       { transform: translateY(-18px) scale(1.02); }
+  66%       { transform: translateY(-8px) scale(0.99); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(0.98); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+.animate-pulse-slow { animation: pulse-slow 3s infinite ease-in-out; }
+.animate-float      { animation: float 4s infinite ease-in-out; }
+
+/* ====================================================
+   BACKGROUND — Temple image with semi-transparent overlay
+   ==================================================== */
+
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  background: linear-gradient(rgba(10, 6, 2, 0.60), rgba(20, 12, 5, 0.65)),
+              url('https://i.ibb.co/DPLFQhBw/Screenshot-2026-07-20-095549.png')
+              center / cover no-repeat fixed !important;
+}
+
+/* Every screen-height container keeps that background visible */
+.min-h-screen {
+  background: transparent !important;
+}
+
+/* Main content area is transparent so body background shows */
+main {
+  background-color: transparent !important;
+}
+
+/* ====================================================
+   GLASS PANEL (sidebar/nav)
+   ==================================================== */
+
+.glass-panel {
+  background: rgba(12, 7, 2, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 167, 38, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.glass-nav {
+  background: rgba(12, 7, 2, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 167, 38, 0.2);
+}
+
+/* ====================================================
+   GLASS CARD — Dark & readable (SINGLE DEFINITION)
+   ==================================================== */
+
+.glass-card {
+  background: rgba(18, 10, 3, 0.82) !important;       /* dark warm opaque */
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(255, 167, 38, 0.22) !important;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(255, 167, 38, 0.10) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #f5f0e8 !important;                            /* cream white base text */
+}
+
+.glass-card:hover {
+  background: rgba(28, 16, 5, 0.90) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(243, 126, 34, 0.18),
+              inset 0 1px 0 rgba(255, 167, 38, 0.15) !important;
+  border-color: rgba(255, 167, 38, 0.40) !important;
+}
+
+/* ====================================================
+   TEXT VISIBILITY — Force readable colours everywhere
+   ==================================================== */
+
+/* All headings — bright cream / white */
+h1, h2, h3, h4, h5, h6 {
+  color: #f5f0e8 !important;
+}
+
+/* Inside glass-card force text bright */
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card h5,
+.glass-card h6 {
+  color: #ffffff !important;
+}
+
+.glass-card p,
+.glass-card label,
+.glass-card span:not([class*="bg-"]) {
+  color: rgba(245, 240, 232, 0.92) !important;
+}
+
+/* Tailwind stone colour overrides → all become light cream */
+.text-stone-900, .text-stone-800 { color: #f5f0e8 !important; }
+.text-stone-700, .text-stone-600 { color: rgba(245,240,232,0.90) !important; }
+.text-stone-500                  { color: rgba(245,240,232,0.72) !important; }
+.text-stone-400                  { color: rgba(245,240,232,0.60) !important; }
+.text-stone-300                  { color: rgba(245,240,232,0.45) !important; }
+
+/* Zinc colours (dark mode variants) → also light */
+.text-zinc-400                   { color: rgba(245,240,232,0.60) !important; }
+.text-zinc-500                   { color: rgba(245,240,232,0.50) !important; }
+
+/* Saffron accents stay saffron */
+.text-saffron-600,
+.text-saffron-500,
+.text-saffron-400 { /* keep as-is — tailwind handles these */ }
+
+/* ====================================================
+   SMALL INNER CARDS / ITEMS (nested bg-stone-50)
+   ==================================================== */
+
+.bg-stone-50\/50,
+.bg-stone-50\/20,
+.dark\:bg-zinc-800\/10,
+.dark\:bg-zinc-800\/20 {
+  background: rgba(255, 167, 38, 0.06) !important;
+}
+
+/* ====================================================
+   TABLE STYLES — Premium gold / saffron theme
+   ==================================================== */
+
+table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 167, 38, 0.28) !important;
+  background: rgba(12, 7, 2, 0.75) !important;
+}
+
+table thead tr {
+  background: linear-gradient(
+    135deg,
+    rgba(243, 126, 34, 0.35) 0%,
+    rgba(212, 175, 55, 0.22) 100%
+  ) !important;
+}
+
+table th {
+  color: #ffc24a !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.70rem !important;
+  padding: 14px 14px !important;
+  border-bottom: 2px solid rgba(255, 167, 38, 0.40) !important;
+  white-space: nowrap;
+}
+
+table tbody tr {
+  transition: background 0.15s ease;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: rgba(15, 9, 3, 0.50) !important;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: rgba(255, 167, 38, 0.05) !important;
+}
+
+table tbody tr:hover {
+  background-color: rgba(255, 167, 38, 0.14) !important;
+}
+
+table td {
+  padding: 13px 14px !important;
+  border-bottom: 1px solid rgba(255, 167, 38, 0.12) !important;
+  color: #f0ece4 !important;
+  font-size: 0.82rem;
+}
+
+table td p {
+  color: rgba(240, 236, 228, 0.90) !important;
+}
+
+table td .text-stone-400,
+table td .text-\[9px\] {
+  color: rgba(240, 236, 228, 0.60) !important;
+}
+
+/* Booking-ID monospace */
+table td .font-mono {
+  color: #ffa726 !important;
+}
+
+/* ====================================================
+   FORM INPUTS — dark with visible text
+   ==================================================== */
+
+.form-input {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 167, 38, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+  color: #f5f0e8;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.form-input:focus {
+  border-color: rgba(243, 126, 34, 0.75);
+  box-shadow: 0 0 0 3px rgba(243, 126, 34, 0.14);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ====================================================
+   DIVIDER / BORDER COLOURS
+   ==================================================== */
+
+.border-stone-100,
+.border-stone-200,
+.border-stone-200\/50,
+.dark\:border-zinc-800 {
+  border-color: rgba(255, 167, 38, 0.15) !important;
+}
+
+/* ====================================================
+   GRADIENT HELPERS
+   ==================================================== */
+
+.bg-divine-gradient {
+  background: linear-gradient(135deg, #0f0a05 0%, #1a0e05 50%, #0f0a05 100%);
+}
+
+.bg-saffron-gold {
+  background: linear-gradient(135deg, #f37e22 0%, #d4af37 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #f7a458 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow-border {
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.28);
+  border-color: rgba(212, 175, 55, 0.50);
+}
