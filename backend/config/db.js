@@ -190,15 +190,15 @@ function initializeSqliteTables() {
     sqliteDb.get(`SELECT COUNT(*) as count FROM users`, async (err, row) => {
       if (err) return;
       if (row.count === 0) {
-        const adminHash = await bcrypt.hash('admin123', 10);
-        const userHash = await bcrypt.hash('user123', 10);
+        const adminHash = await bcrypt.hash('admin12', 10);
+        const userHash = await bcrypt.hash('user12', 10);
         sqliteDb.run(`INSERT INTO users (name, mobile, email, password, role) VALUES (?, ?, ?, ?, ?)`, 
-          ['Temple Admin', '9876543210', 'admin@temple.com', adminHash, 'admin']
+          ['Temple Admin', '9876543210', 'admin@gmail.com', adminHash, 'admin']
         );
         sqliteDb.run(`INSERT INTO users (name, mobile, email, password, role) VALUES (?, ?, ?, ?, ?)`, 
-          ['Devotee Keerthi', '8765432109', 'user@temple.com', userHash, 'user']
+          ['Devotee Keerthi', '8765432109', 'user@gmail.com', userHash, 'user']
         );
-        console.log('Seeded SQLite Users: admin@temple.com / admin123, user@temple.com / user123');
+        console.log('Seeded SQLite Users: admin@gmail.com / admin12, user@gmail.com / user12');
       }
     });
 
